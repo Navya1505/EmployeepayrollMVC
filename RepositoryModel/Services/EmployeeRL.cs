@@ -84,7 +84,7 @@ namespace RepositoryModel.Services
                 while (rdr.Read())
                 {
                     employee.EmpId = Convert.ToInt32(rdr["Emp_id"]);
-                    employee.Name = rdr["Emp_name"].ToString();
+                    employee.Name = rdr["Name"].ToString();
                     employee.ProfileImage = rdr["Profile_img"].ToString();
                     employee.Gender = rdr["Gender"].ToString();
                     employee.Department = rdr["Department"].ToString();
@@ -113,10 +113,10 @@ namespace RepositoryModel.Services
         {
             using (SqlConnection con = new SqlConnection(this.Configuration.GetConnectionString("EmployeepayrollDB")))
             {
-                SqlCommand cmd = new SqlCommand("updateEmployee", con);
+                SqlCommand cmd = new SqlCommand("UpdateEmployeeDetails", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Emp_id", employeeModel.EmpId);
-                cmd.Parameters.AddWithValue("@Emp_name", employeeModel.Name);
+                cmd.Parameters.AddWithValue("@Name", employeeModel.Name);
                 cmd.Parameters.AddWithValue("@Profile_img", employeeModel.ProfileImage);
                 cmd.Parameters.AddWithValue("@Gender", employeeModel.Gender);
                 cmd.Parameters.AddWithValue("@Department", employeeModel.Department);
