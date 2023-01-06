@@ -177,3 +177,5 @@ C:\Training\T1\EmployeePayrollMVC\EmployeePayrollMVC\obj\Debug\netcoreapp3.1\Emp
 C:\Training\T1\EmployeePayrollMVC\EmployeePayrollMVC\obj\Debug\netcoreapp3.1\EmployeePayrollMVC.Views.pdb
 C:\Training\T1\EmployeePayrollMVC\EmployeePayrollMVC\obj\Debug\netcoreapp3.1\EmployeePayrollMVC.csproj.CopyComplete
 C:\Training\T1\EmployeePayrollMVC\EmployeePayrollMVC\obj\Debug\netcoreapp3.1\EmployeePayrollMVC.genruntimeconfig.cache
+C:\Training\T1\EmployeePayrollMVC\EmployeePayrollMVC\obj\Debug\netcoreapp3.1\Razor\Views\Employee\Custom.cshtml.g.cs
+C:\Training\T1\EmployeePayrollMVC\EmployeePayrollMVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Employee.cshtml.g.cs

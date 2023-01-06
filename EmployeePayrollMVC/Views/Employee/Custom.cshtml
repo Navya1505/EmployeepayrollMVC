@@ -1,0 +1,117 @@
+﻿<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+<h1>History Of Employeepayroll</h1>
+<a href="#" onclick="createnew(); return false;" class="btn-primary">Add New</a>
+@Html.Partial("~/Views/Shared/Employee.cshtml")
+<table id="tblemployee" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>EmpId</th>
+            <th>Name</th>
+            <th>ProfileImage</th>
+            <th>Gender</th>
+            <th>Department</th>
+            <th>Salary</th>
+            <th>StartDate</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody id="table-data">
+    </tbody>
+
+</table>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+
+<script type="text/javascript">
+    var js = jQuery.noConflict(true);
+    js(document).ready(function () {
+        //alert();
+        Loademployee();
+    });
+    function createnew() {
+        clearall();
+        $('#btnmodel').trigger('click');
+    }
+    function clearall() {
+        $('#txtid').val('');
+        $('#txtname').val('');
+        $('#txtdesignation').val('');
+        $('#txtgender').val('');
+        $('#txtpi').val('');
+        $('#txtsalary').val('');
+        $('#txtsd').val('');
+        $('#txtnotes').val('');
+    }
+
+    function create() {
+        //debugger
+        var isproceed = true;
+        var EmpId = $('#txtid').val();
+        var name = $('#txtname').val();
+        var department = $('#txtdepartment').val();
+        var gender = $('#txtgender').val();
+        var profileimg = $('#txtpi').val();
+        var salary = $('#txtsalary').val();
+        var startdate = $('#txtsd').val();
+        var notes = $('#txtnotes').val();
+        if (name == '') {
+            isproceed = false;
+            $('#txtname').css('border-color', 'red');
+        }
+        else {
+            $('#txtname').css('border-color', '#ccc');
+        }
+        if (isproceed) {
+            var empdata = new Object();
+            empdata.EmpId = id;
+            empdata.Name = name;
+            empdata.Department = department;
+            empdata.Gender = gender;
+            empdata.Startdate = startdate;
+            empdata.Notes = notes;
+            empdata.Salary = salary;
+            empdata.ProfileImage = profileimg;
+            $.ajax({
+                type: 'post',
+                url: 'Createjson',
+                data: empdata,
+                success(data) {
+                    if (data != null) {
+                        alert('saved sucessfuly')
+                    }
+                    else {
+                        alert('failed')
+                    }
+
+                }
+            });
+        }
+    }
+    function Loademployee() {
+        var empdata = [];
+        $.ajax({
+            type: 'Get',
+            url: 'GetAll',
+            data: {},
+            async: false,
+            success(data) {
+                if (data != null) {
+                    $.each(data, function (key, value) {
+                        empdata.push([
+                            value.id, value.name, value.profileImage, value.gender, value.department,
+                            value.salary, value.startDate, value.notes]);
+                    });
+                }
+            },
+            error() {
+            }
+        });
+
+        js('#tblemployee').dataTable({
+            destroy: true,
+            data: empdata
+        });
+    }
+
+</script>

@@ -16,21 +16,21 @@ namespace EmployeePayrollMVC.Controllers
             this.employeeBL = employeeBL;
         }
 
-        public IActionResult Index()
-        {
-            List<EmployeeModel> lstEmployee = new List<EmployeeModel>();
-            lstEmployee = employeeBL.getEmployeeList().ToList();
-            return View(lstEmployee);
-        }
+        //public IActionResult Index()
+        //{
+        //    List<EmployeeModel> lstEmployee = new List<EmployeeModel>();
+        //    lstEmployee = employeeBL.getEmployeeList().ToList();
+        //    return View(lstEmployee);
+        //}
 
-        [HttpGet]
-        public IActionResult Create()
-        {
-            return View();
-        }
+        //[HttpGet]
+        //public IActionResult Create()
+        //{
+        //    return View();
+        //}
 
 
-        [HttpPost]
+        //[HttpPost]
         public IActionResult Create(EmployeeModel employeemodel)
         {
             if (ModelState.IsValid)
@@ -40,20 +40,13 @@ namespace EmployeePayrollMVC.Controllers
             }
             return View(employeemodel);
         }
-        [HttpGet]
-        public IActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            EmployeeModel employee = employeeBL.getEmployeeById(id);
 
-            if (employee == null)
-            {
-                return NotFound();
-            }
-            return View(employee);
+        public JsonResult GetAll()
+        {
+            List<EmployeeModel> lstEmployee = new List<EmployeeModel>();
+            lstEmployee = employeeBL.getEmployeeList().ToList();
+
+            return Json(lstEmployee);
         }
 
         [HttpGet]
@@ -108,6 +101,30 @@ namespace EmployeePayrollMVC.Controllers
                 return RedirectToAction("Index");
             }
             return View(employee);
+        }
+        
+        public IActionResult Custom()
+        {
+            List<EmployeeModel> lstEmployee = new List<EmployeeModel>();
+            lstEmployee = employeeBL.getEmployeeList().ToList();
+
+            return View(lstEmployee);
+        }
+      
+
+        public JsonResult GetEmployeeById(int EmployeeId)
+        {
+            EmployeeModel employee = this.employeeBL.getEmployeeById(EmployeeId);
+
+            return Json(employee);
+        }
+
+        public JsonResult Createjson(EmployeeModel employeemodel)
+        {
+
+            employeeBL.addEmployee(employeemodel);
+           
+            return Json(employeemodel);
         }
     }
 

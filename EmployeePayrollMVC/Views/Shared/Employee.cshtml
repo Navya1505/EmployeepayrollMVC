@@ -1,0 +1,97 @@
+﻿<!-- Button trigger modal -->
+<button type="button" id="btnmodel" class="btn btn-primary" style="display:none" data-toggle="modal" data-target="#employeeModal">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="employeeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Add/Edit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label>EmpId</label>
+                    </div>
+                    <div class="col-lg-9">
+                        <input id="txtid" disabled="disabled" class="form-control" />
+                    </div>
+
+                    <div class="col-lg-3">
+                        <label>Name</label>
+                    </div>
+                    <div class="col-lg-9">
+                        <input id="txtname" class="form-control" />
+                    </div>
+
+                    <div class="col-lg-3">
+                        <label>Department</label>
+                    </div>
+                    <div class="col-lg-9">
+                        <input id="txtdepartment" class="form-control" />
+                    </div>
+
+                    <div class="col-lg-3">
+                        <label>Gender</label>
+                    </div>
+                    <div class="col-lg-9">
+                        <select id="txtgender" class="form-control">
+                            <option>Male</option>
+                            <option>Female</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <label>StartDate</label>
+                    </div>
+                    <div class="col-lg-9">
+                        <input type="datetime-local" id="txtsd" class="form-control" />
+                    </div>
+
+                    <div class="col-lg-3">
+                        <label>Salary</label>
+                    </div>
+                    <div class="col-lg-9">
+                        <input id="txtsalary" class="form-control" />
+                    </div>
+
+                    <div class="col-lg-3">
+                        <label>Notes</label>
+                    </div>
+                    <div class="col-lg-9">
+                        <input id="txtnotes" class="form-control" />
+                    </div>
+
+                    <div class="col-lg-3">
+                        <label>Profile Image</label>
+                    @*    <div>
+                            @Html.RadioButtonFor(model => model.ProfileImage, "~/Assets/Male (1).png")
+                            <img class="Profile-image-1 " src="~/Assets/Male (1).png" />
+                            @Html.RadioButtonFor(model => model.ProfileImage, "~/Assets/Female (3).png")
+                            <img class="Profile-image-1 " src="~/Assets/Female (3).png" />
+                            @Html.RadioButtonFor(model => model.ProfileImage, "~/Assets/Male (2).png")
+                            <img class="Profile-image-1 " src="~/Assets/Male (2).png" />
+                            @Html.RadioButtonFor(model => model.ProfileImage, "~/Assets/Female (5).png")
+                            <img class="Profile-image-1 " src="~/Assets/Female (5).png" />
+                        </div>
+*@
+                    </div>
+                    <div class="col-lg-9">
+                        <input id="txtpi" class="form-control" />
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-secondary" data-dismiss="modal">Close</a>
+                <a href="#" onclick="create(); return false;" class="btn btn-primary">Save changes</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -30,6 +30,7 @@ namespace EmployeePayrollMVC
             services.AddControllersWithViews();
             services.AddTransient<IEmployeeRL,EmployeeRL>();
            services.AddTransient<IEmployeeBL,EmployeeBL>();
+           // services.AddControllersWithViews().AddRazorRuntimeCompilation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

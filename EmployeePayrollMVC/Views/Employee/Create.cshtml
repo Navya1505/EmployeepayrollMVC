@@ -1,15 +1,19 @@
 ﻿@model CommonModel.EmployeeModel
-
 @{
     ViewData["Title"] = "Create";
 }
-
-<h1>Create</h1>
-
+<div class="head">
+    <img src="~/Assets/logo.png" style="width:50px;height:47px" />
+    <div>
+        <span style="color: #82A70C">EMPLOYEE</span><br />
+        <span style="color: #42515F"> PAYROLL</span>
+    </div>
+</div>
+<div class="heading">
+    <h3>Add New Employee</h3>
+</div>
 <h4>EmployeeModel</h4>
 <hr />
-
-<link href="~/css/create.css" rel="stylesheet" />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
@@ -26,14 +30,19 @@
             </div>
             <div class="form-group">
                 <label asp-for="ProfileImage" class="control-label"></label>
-                <div> @Html.RadioButtonFor(model => model.ProfileImage, "~/Assets/Male (1).png")
-                <img class="Profile-image-1 " src="~/Assets/Male (1).png" />
-                @Html.RadioButtonFor(model => model.ProfileImage, "~/Assets/Female (3).png")
-                <img class="Profile-image-1 " src="~/Assets/Female (3).png" />
-                @Html.RadioButtonFor(model => model.ProfileImage, "~/Assets/Male (2).png")
-                <img class="Profile-image-1 " src="~/Assets/Male (2).png" />
-                @Html.RadioButtonFor(model => model.ProfileImage, "~/Assets/Female (5).png")
-                <img class="Profile-image-1 " src="~/Assets/Female (5).png" />
+                <div class="form-group">
+                    <label asp-for="ProfileImage" class="control-label"></label>
+                    <div>
+                        @Html.RadioButtonFor(model => model.ProfileImage, "~/Assets/Male (1).png")
+                        <img class="Profile-image-1 " src="~/Assets/Male (1).png" />
+                        @Html.RadioButtonFor(model => model.ProfileImage, "~/Assets/Female (3).png")
+                        <img class="Profile-image-1 " src="~/Assets/Female (3).png" />
+                        @Html.RadioButtonFor(model => model.ProfileImage, "~/Assets/Male (2).png")
+                        <img class="Profile-image-1 " src="~/Assets/Male (2).png" />
+                        @Html.RadioButtonFor(model => model.ProfileImage, "~/Assets/Female (5).png")
+                        <img class="Profile-image-1 " src="~/Assets/Female (5).png" />
+                    </div>
+                    <span asp-validation-for="ProfileImage" class="text-danger"></span>
                 </div>
                 <span asp-validation-for="ProfileImage" class="text-danger"></span>
             </div>
@@ -56,16 +65,15 @@
                 </select>
                 <span asp-validation-for="Department" class="text-danger"></span>
             </div>
-
-            <div class="form-group">
-                <label asp-for="StartDate" class="control-label"></label>
-                <input asp-for="StartDate" class="form-control" />
-                <span asp-validation-for="StartDate" class="text-danger"></span>
-            </div>
             <div class="form-group">
                 <label asp-for="Salary" class="control-label"></label>
                 <input asp-for="Salary" class="form-control" />
                 <span asp-validation-for="Salary" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartDate" class="control-label"></label>
+                <input asp-for="StartDate" class="form-control" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Notes" class="control-label"></label>

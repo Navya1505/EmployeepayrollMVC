@@ -4,9 +4,8 @@
     ViewData["Title"] = "Index";
     }
 
-    <link href="~/css/indexcss.css" rel="stylesheet" />
-
 <h1>Index</h1>
+<link href="~/css/indexcss.css" rel="stylesheet" />
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -78,3 +77,95 @@
 }
     </tbody>
 </table>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+<script type="text/javascript">
+    var js = jQuery.noConflict(true);
+    js(document).ready(function () {
+        LoadEmployee();
+    });
+    function LoadEmployee() {
+        var empData = [];
+        $.ajax({
+            type: 'GET',
+            dataType: "json",
+            url: 'Employee/GetAllEmployees',
+            async: false,
+            data: {},
+            success(data) {
+                if (data != null) {
+
+                    $.each(data, function (key, value) {
+                        empData.push([value.EmpId, value.Name, value.ProfileImage, value.Gender, value.Department, value.StartDate, value.Salary, value.Notes'']);
+                    });
+                }
+                else {
+                    alert('Failed');
+                }
+            },
+            error() {
+            }
+        });
+        js('#tblEmp').dataTable({
+            destroy: true,
+            data: empData
+        });
+    }
+    function CreateNew() {
+        ClearAll();
+        $('#btnmodel').trigger('click');
+    }
+    function ClearAll() {
+        $('#txtEmpId').val('');
+        $('#txtName').val('');
+        $('#txtProfileImage').val('');
+        $('#txtGender').val('');
+        $('#txtDepartment').val('');
+        $('#txtSalary').val('');
+        $('#txtStartDate').val('');
+        $('#txtNotes').val('');
+    }
+    function Create() {
+        var isproceed = true;
+        var EmployeeName = $('#txtName').val();
+        var ProfileImage = $('#txtProfileImage').val();
+        var Gender = $('#txtGender').val();
+        var Department = $('#txtDepartment').val();
+        var Salary = $('#txtSalary').val();
+        var StartDate = $('#txtStartDate').val();
+        var Notes = $('#txtNotes').val();
+        if (EmployeeName == '') {
+            var isproceed = false;
+            $('#EmployeeName').css('border-color', 'red');
+        }
+        else {
+            $('#EmployeeName').css('border-color', '#ccc')
+        }
+        if (isproceed) {
+            var empData = new Object();
+            empData.Name = Name;
+            empData.ProfileImage = ProfileImage;
+            empData.Gender = Gender;
+            empData.Department = Department;
+            empData.StartDate = StartDate;
+            empData.Salary = Salary;
+            empData.Notes = Notes;
+            $.ajax({
+                type: 'post',
+                url: 'Employee/AddEmployee',
+                data: empData,
+                success(data) {
+                    if (data != null) {
+                        alert('Data Saved Successfully')
+                    }
+                    else {
+                        alert('Failed');
+                    }
+                },
+                error() {
+                }
+            })
+        }
+    }
+</script>
